@@ -25,6 +25,8 @@ pipeline {
                         sam build
                         sam deploy --config-file samconfig.toml --config-env staging
                     '''
+         }
+     }
        stage('Rest Test') {
             steps {
                 script {
@@ -38,31 +40,17 @@ pipeline {
         junit 'junit-report.xml'
     }
 }
-
     stage('Promote') {
     steps {
         withCredentials([gitUsernamePassword(credentialsId: 'github-credentials', gitToolName: 'Default')]) {
             sh '''
-                git config user.email "jenkins@jenkins.com"
-                git config user.name "Jenkins CI"
                 git checkout master
-                git merge develop --no-edit
+                git merge develop 
                 git push origin master
             '''
         }
     }
 }
-            stage('Promote') {
-            steps {
-                withCredentials([gitUsernamePassword(credentialsId: 'github-credentials', gitToolName: 'Default')
-                                ]) {
-                    sh '''
-                        git checkout master
-                        git merge -X ours develop --no-edit
-                        git push origin master
-                    '''
-                }
-            }
-        }
-    }
 }
+}
+            
