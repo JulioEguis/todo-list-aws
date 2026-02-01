@@ -18,12 +18,14 @@ pipeline {
                 recordIssues tools: [pyLint(name: 'Bandit', pattern: 'bandit.out')]
     }
 }
-                stage('Deploy') {
+               stage('Deploy') {
                 steps {
                     sh '''
-                    sam validate --region us-east-1
-                    sam build
-                    sam deploy --config-file samconfig.toml --config-env staging
-                        '''
-                }
+                        sam validate --region us-east-1
+                        sam build
+                        sam deploy --config-file samconfig.toml --config-env staging
+                    '''
             }
+        }
+    }
+}
