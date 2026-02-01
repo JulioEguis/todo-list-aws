@@ -19,8 +19,8 @@ s3_prefix = "staging-todo-list-aws"
 capabilities = "CAPABILITY_IAM"
 parameter_overrides = "Stage=\"staging\""
 image_repositories = []
-resolve_s3 = true
-confirm_changeset = true
+
+
 
 
 [staging.global.parameters]
