@@ -21,8 +21,8 @@ pipeline {
                stage('Deploy') {
                 steps {
                     sh '''
-                        sam validate --region us-east-1
                         sam build
+                        sam validate --region us-east-1
                         sam deploy --config-file samconfig.toml --config-env staging --no-fail-on-empty-changeset
                     '''
          }
