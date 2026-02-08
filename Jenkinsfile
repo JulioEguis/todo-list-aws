@@ -45,7 +45,7 @@ pipeline {
         withCredentials([gitUsernamePassword(credentialsId: 'github-credentials', gitToolName: 'Default')]) {
             sh '''
                 git checkout master
-                git push origin master
+                git pull origin master
                 git merge -X ours develop --no-edit 
                 git push origin master
                 
