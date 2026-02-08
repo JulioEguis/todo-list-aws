@@ -44,8 +44,9 @@ pipeline {
     steps {
         withCredentials([gitUsernamePassword(credentialsId: 'github-credentials', gitToolName: 'Default')]) {
             sh '''
+                git fetch origin
                 git checkout master
-                git pull origin master
+                git reset --hard origin/master
                 git merge -X ours develop --no-edit 
                 git push origin master
                 
