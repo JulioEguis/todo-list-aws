@@ -75,5 +75,8 @@ stage('Deploy') {
                         git push origin master
                     '''
                 }
-            }
+        }
+ }
+    }
+ }
        
