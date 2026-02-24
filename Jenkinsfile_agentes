@@ -4,7 +4,7 @@ pipeline {
 stages {
 
     stage('Get Code') {
-        agent any
+        agent { label 'principal' }
         steps {
         sh 'whoami'
                     sh 'hostname'
@@ -28,7 +28,7 @@ stage('Static Test') {
         }
 
 stage('Deploy') {
-            agent any
+            agent { label 'principal' }
             steps {
                 sh 'whoami'
                 sh 'hostname'
@@ -63,7 +63,7 @@ stage('Deploy') {
         }
 
         stage('Promote') {
-            agent any
+            agent { label 'principal' }
             steps {
                 sh 'whoami'
                 sh 'hostname'
