@@ -18,7 +18,7 @@ stage('Static Test') {
                         sh 'whoami'
                         sh 'hostname'
                         sh '''
-                        export PATH=/var/lib/jenkins/.local/bin:$PATH
+                        export PATH=/home/ubuntu/.local/bin:$PATH
                         flake8 --exit-zero --format=pylint src > flake8.out
                         bandit --exit-zero -r src -f custom -o bandit.out --msg-template "{abspath}:{line}: [{test_id}] {msg}"
                 '''
@@ -53,6 +53,7 @@ stage('Deploy') {
 
                     withEnv(["BASE_URL=${BASE_URL}"]) {
                         sh '''
+                               export PATH=/home/ubuntu/.local/bin:$PATH 
                             python3 -m pytest --junitxml=junit-report.xml test/integration/todoApiTest.py -v
                         '''
                     }
