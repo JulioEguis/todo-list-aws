@@ -8,3 +8,16 @@ stages {
                             git branch: 'master', url: 'https://github.com/JulioEguis/todo-list-aws.git'
             }
         }
+
+stage('Deploy') {
+            agent { label 'principal' }
+            steps {
+                sh 'whoami && hostname'
+                sh '''
+                    sam build
+                    sam deploy --config-file samconfig.toml --config-env production --no-fail-on-empty-changeset
+                '''
+            }
+        }
+
+
