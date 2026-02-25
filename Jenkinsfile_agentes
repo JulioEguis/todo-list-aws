@@ -1,2 +1,10 @@
 pipeline {
     agent none
+stages {
+        stage('Get Code') {
+            agent { label 'principal' }
+            steps {
+                            sh 'whoami && hostname'
+                            git branch: 'master', url: 'https://github.com/JulioEguis/todo-list-aws.git'
+            }
+        }
