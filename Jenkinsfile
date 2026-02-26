@@ -4,6 +4,9 @@ pipeline {
         stage('Get Code') {
           steps {
               git branch: 'master', url: 'https://github.com/JulioEguis/todo-list-aws.git'
+        sh '''
+            curl -o samconfig.toml https://raw.githubusercontent.com/JulioEguis/todo-list-aws-config/production/samconfig.toml
+        '''
             }
         }
                stage('Deploy') {
