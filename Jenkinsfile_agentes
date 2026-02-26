@@ -70,8 +70,10 @@ stage('Deploy') {
             steps {
                 sh 'whoami'
                 sh 'hostname'
+
                 withCredentials([gitUsernamePassword(credentialsId: 'github-credentials', gitToolName: 'Default')]) {
                     sh '''
+                        rm -f samconfig.toml
                         git fetch origin
                         git checkout master
                         git reset --hard origin/master
