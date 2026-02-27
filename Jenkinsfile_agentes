@@ -74,7 +74,7 @@ stage('Deploy') {
                 withCredentials([gitUsernamePassword(credentialsId: 'github-credentials', gitToolName: 'Default')]) {
                     sh '''
                         rm -f samconfig.toml
-                        git fetch origin
+                        git fetch origin master:master
                         git checkout master
                         git reset --hard origin/master
                         git merge -X ours develop --no-edit 
